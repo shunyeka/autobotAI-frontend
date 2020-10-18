@@ -1,0 +1,250 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "Dasboard for autobotAI - Alexa for Business skill for cloud management and DevOps operations"
+  title=title
+
+block view
+  div.budgetModel  
+  .animated.fadeIn
+    .card-group.py-1
+      .card
+        .card-header
+          | Spending Overview
+        .card-body.cost-overview.pb-0(style='min-height: 50px;')
+          .spinner
+            .dot1
+            .dot2
+        .card-footer
+          .text-right
+            button.btn.btn-success.budget-modal(type="button")
+              | Update
+      .card
+        .card-header
+          | RI and Resource Utilization Summary
+        .card-body.ri-info.pb-0(style='min-height: 50px;')
+          .spinner
+            .dot1
+            .dot2
+        .card-footer
+          .text-right
+            button.btn.btn-success.hide(type="button")
+              | Budget
+    .card-group.py-1
+      .card
+        .card-header
+          | Security Issues
+        .card-body.security-issue-chart
+          canvas#securityIssues.card-img-top
+        .card-footer
+          .text-right
+            a.btn.btn-success(href='security-issues.html') Fix Issue
+      .card
+        .card-header
+          | Maintenance Tasks
+        .card-body.maintenance-tasks-chart
+          canvas#maintenanceTasks.card-img-top
+        .card-footer
+          .text-right
+            a.btn.btn-success(href='maintenance-tasks.html') Fix Them          
+    .card-group.py-1
+        .card.col-sm-12.col-md-6.pr-0.pl-0
+          .card-header
+            | Unused Resources
+          .card-body.unused-resources-chart
+            canvas#unusedResources.card-img-top
+          .card-footer
+            .text-right
+              a.btn.btn-success(href='unused-resources.html') Cleanup
+      
+
+block page-scripts
+  script(src=asset_base_path+'js/muuri-lib.min.js')
+  script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/dashboard-widgets.js')
+  script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')  
+  script(src=asset_base_path+'js/budget-service.js')   
+block hbs-tmpls
+  script#cost-overview-widget-template(type='text/x-handlebars-template').
+    <div class="row">      
+      <div class="col-sm-4">
+      {{#if budgets.AIMonthlyBudget}}
+        <div class="callout callout-info"><small class="text-muted">Monthly Budget</small><br/><strong class="h4">${{budgets.AIMonthlyBudget.budgetLimit}}</strong></div>
+      {{else}}
+        <div class="callout callout-info"><small class="text-muted">Monthly Budget</small><br/><strong class="h4">N/A</strong></div>
+      {{/if}}
+      </div>
+      <div class="col-sm-4">
+      {{#if budgets.AIQuarterlyBudget}}
+        <div class="callout callout-info"><small class="text-muted">Quarterly Budget</small><br/><strong class="h4">${{budgets.AIQuarterlyBudget.budgetLimit}}</strong></div>
+      {{else}}
+        <div class="callout callout-info"><small class="text-muted">Quarterly Budget</small><br/><strong class="h4">N/A</strong></div>
+      {{/if}}
+      </div>
+      <div class="col-sm-4">
+      {{#if budgets.AIAnnuallyBudget}}
+        <div class="callout callout-info"><small class="text-muted">Annual Budget</small><br/><strong class="h4">${{budgets.AIAnnuallyBudget.budgetLimit}}      </strong></div>
+      {{else}}
+        <div class="callout callout-info"><small class="text-muted">Annual Budget</small><br/><strong class="h4">N/A</strong></div>
+      {{/if}}
+      </div>
+      <div class="col-sm-12">
+        <div class="progress-group mb-4">
+          <div class="progress-group-prepend"><span class="progress-group-text">Monthly</span></div>
+          <div class="progress-group-bars">
+          {{#if budgets.AIMonthlyBudget}}
+            <div class="progress-group">
+              <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                <div>Budget Utilization is {{budgets.AIMonthlyBudget.budgetUtilization}}%</div>
+                <div class="ml-auto font-weight-bold mr-2">${{budgets.AIMonthlyBudget.actualSpend}}</div>
+              </div>
+              <div class="progress-group-bars">
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-{{contextualClass budgets.AIMonthlyBudget.budgetUtilization budgets.monthElapsed}}" role="progressbar" style="width: {{budgets.AIMonthlyBudget.budgetUtilization}}%;" aria-valuenow="{{budgets.AIMonthlyBudget.budgetUtilization}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="progress-group">
+              <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                <div>Forecast is {{budgets.AIMonthlyBudget.budgetVsForecast}}% of your Budget</div>
+                <div class="ml-auto font-weight-bold mr-2">${{budgets.AIMonthlyBudget.budgetForecast}}</div>
+              </div>
+              <div class="progress-group-bars">
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-{{contextualClass budgets.AIMonthlyBudget.budgetVsForecast null}}" role="progressbar" style="width: {{budgets.AIMonthlyBudget.budgetVsForecast}}%;" aria-valuenow="{{budgets.AIMonthlyBudget.budgetVsForecast}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          {{else}} 
+              <div class="progress-group m-0">
+                <div class="col-sm-12 col-lg-9 d-flex align-items-center p-0">
+                  <div class="text-danger">Monthly Budget is not set for your account</div>
+                </div>
+                <div class="col-sm-12 col-lg-3 d-flex p-0"><button class="btn btn-pill btn-primary ml-lg-auto budget-modal" type="button">Set it Now</button></div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="progress-group mb-4">
+          <div class="progress-group-prepend"><span class="progress-group-text">Quarterly</span></div>
+          <div class="progress-group-bars">
+            {{#if budgets.AIQuarterlyBudget}}
+              <div class="progress-group">
+                <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                  <div>Budget Utilization is {{budgets.AIQuarterlyBudget.budgetUtilization}}%</div>
+                  <div class="ml-auto font-weight-bold mr-2">${{budgets.AIQuarterlyBudget.actualSpend}}</div>
+                </div>
+                <div class="progress-group-bars">
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-{{contextualClass budgets.AIQuarterlyBudget.budgetUtilization budgets.monthElapsed}}" role="progressbar" style="width: {{budgets.AIQuarterlyBudget.budgetUtilization}}%;" aria-valuenow="{{budgets.AIQuarterlyBudget.budgetUtilization}}"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="progress-group">
+                <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                  <div>Forecast is {{budgets.AIQuarterlyBudget.budgetVsForecast}}% of your Budget</div>
+                  <div class="ml-auto font-weight-bold mr-2">${{budgets.AIQuarterlyBudget.budgetForecast}}</div>
+                </div>
+                <div class="progress-group-bars">
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-{{contextualClass budgets.AIQuarterlyBudget.budgetVsForecast null}}" role="progressbar" style="width: {{budgets.AIQuarterlyBudget.budgetVsForecast}}%;" aria-valuenow="{{budgets.AIQuarterlyBudget.budgetVsForecast}}"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            {{else}} 
+              <div class="progress-group m-0">
+                <div class="col-sm-12 col-lg-9 d-flex align-items-center p-0">
+                  <div class="text-danger">Quarterly Budget is not set for your account</div>
+                </div>
+                <div class="col-sm-12 col-lg-3 d-flex p-0"><button class="btn btn-pill btn-primary ml-lg-auto budget-modal" type="button">Set it Now</button></div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="progress-group mb-4">
+          <div class="progress-group-prepend"><span class="progress-group-text">Annual</span></div>
+          <div class="progress-group-bars">
+            {{#if budgets.AIAnnuallyBudget}}
+            <div class="progress-group">
+              <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                <div>Budget Utilization is {{budgets.AIAnnuallyBudget.budgetUtilization}}%</div>
+                <div class="ml-auto font-weight-bold mr-2">${{budgets.AIAnnuallyBudget.actualSpend}}</div>
+              </div>
+              <div class="progress-group-bars">
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-{{contextualClass budgets.AIAnnuallyBudget.budgetUtilization budgets.yearElapsed}}" role="progressbar" style="width: {{budgets.AIAnnuallyBudget.budgetUtilization}}%;" aria-valuenow="{{budgets.AIAnnuallyBudget.budgetUtilization}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="progress-group">
+              <div class="progress-group-header align-items-end"><i class="fa fa-usd p-1"></i>
+                <div>Forecast is {{budgets.AIAnnuallyBudget.budgetVsForecast}}% of your Budget</div>
+                <div class="ml-auto font-weight-bold mr-2">${{budgets.AIAnnuallyBudget.budgetForecast}}</div>
+              </div>
+              <div class="progress-group-bars">
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-{{contextualClass budgets.AIAnnuallyBudget.budgetVsForecast null}}" role="progressbar" style="width: {{budgets.AIAnnuallyBudget.budgetVsForecast}}%;" aria-valuenow="{{budgets.AIAnnuallyBudget.budgetVsForecast}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            {{else}} 
+              <div class="progress-group m-0">
+                <div class="col-sm-12 col-lg-9 d-flex align-items-center p-0">
+                  <div class="text-danger">Annual Budget is not set for your account</div>
+                </div>
+                <div class="col-sm-12 col-lg-3 d-flex p-0"><button class="btn btn-pill btn-primary ml-lg-auto budget-modal" type="button">Set it Now</button></div>
+              </div>
+            {{/if}}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  script#ri-info-widget-template(type='text/x-handlebars-template').
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="callout callout-info"><small class="text-muted">RI Savings</small><br /><strong class="h4">${{riSavings.totalSaving}}(upto {{riSavings.highestPercent}}%)</strong>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="callout callout-info"><small class="text-muted">Net RI Savings</small><br /><strong
+            class="h4">${{riUtil.NetRISavings}}</strong>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="callout callout-info"><small class="text-muted">Total Potential Savings</small><br /><strong
+            class="h4">${{riUtil.TotalPotentialRISavings}}</strong></div>
+      </div>
+      <div class="col-sm-12">
+        <div class="progress-group">
+          <div class="progress-group-header">
+            <div>RI Utilization</div>
+            <div class="ml-auto font-weight-bold">{{riUtil.UtilizationPercentage}}%</div>
+          </div>
+          <div class="progress-group-bars">
+            <div class="progress progress-sm">
+              <div class="progress-bar bg-{{contextualInvertedClass riUtil.UtilizationPercentage}}" role="progressbar" style="width: {{riUtil.UtilizationPercentage}}%" aria-valuenow="{{riUtil.UtilizationPercentage}}" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="progress-group">
+          <div class="progress-group-header">
+            <div>RI Coverage</div>
+            <div class="ml-auto font-weight-bold">{{roundOff riCoverage.CoverageHours.CoverageHoursPercentage}}%</div>
+          </div>
+          <div class="progress-group-bars">
+            <div class="progress progress-sm">
+              <div class="progress-bar bg-{{contextualInvertedClass riCoverage.CoverageHours.CoverageHoursPercentage}}" role="progressbar" style="width: {{riCoverage.CoverageHours.CoverageHoursPercentage}}%" aria-valuenow="{{riCoverage.CoverageHours.CoverageHoursPercentage}}" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

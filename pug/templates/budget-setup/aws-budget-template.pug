@@ -1,0 +1,34 @@
+mixin budget_row(name, budget)
+  th(scope='row')= name
+  td= currency(budget.budget_amount)
+  td= currency(budget.forecast_amount)
+  td
+    div.input-group
+      div.input-group-prepend
+        span.input-group-text $
+      input(class="form-control "+budget.name type='number' value=Math.round(budget.forecast_amount))
+
+#budgetModel.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+    .modal-content
+      .modal-header
+        h5#modal-title Budget
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+          table#budget_table.table.table-striped.ml-auto.mr-auto
+            tr
+              th(scope='col') Budgets
+              th(scope='col') Budget Amount
+              th(scope='col') Forecast Amount
+              th(scope='col') Update Amount
+            tr
+              +budget_row("Monthly", budgets.monthly)
+            tr
+              +budget_row("Quarterly", budgets.quarterly)
+            tr
+              +budget_row("Annually", budgets.annually)
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+        button.btn.btn-primary.set-budget(type='button')
+          | Update

@@ -1,0 +1,56 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "User Create/Edit autobotAI - Alexa for Business skill for cloud management and DevOps operations"
+  title=title
+
+block view
+  .card
+    .card-header
+      | Create User
+    .card-body
+      .container
+        form#userCEForm(novalidate='')
+          .form-group.control-group
+            input#registerName.input.validate.form-control(type='text' placeholder='Name' autocomplete='name' required='' data-validation-required-message='Please enter your Name')
+            p.help-block.text-danger
+          .form-group.control-group
+            input#registerEmail.input.validate.form-control(type='email' autocomplete='email' placeholder='Email' required='' data-validation-required-message='Please enter valid email')
+            p.help-block.text-danger
+          .form-row.control-group
+            .form-group.col-3.control-group.m-0
+              select#registerPhoneCode.input.country-code.validate.form-control
+                option(value='') Country
+            .form-group.col-9.control-group.m-0
+              input#registerPhone.input.phone.validate.form-control(autocomplete='tel-national' pattern='^\\d{4,15}$' placeholder='Phone' required='' data-validation-required-message='Please enter valid phone number' data-validation-pattern-message='Phone enter valid phone number' type='text')
+              p.help-block.text-danger
+          .form-group.control-group
+            input#registerPassword.input.validate.form-control(type='password' name='registerPassword' placeholder='Password' data-validation-required-message='Please enter password' required='' pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$^!%*?#&()-=_+])[A-Za-z\\d$@$^!%*?#&()-=_+]{8,}' data-validation-pattern-message='Minimum 8 chars, at least one uppercase, one lowercase, one number and one special char (@$^!%*?#&()-=_+)')
+            p.help-block.text-danger
+          .form-group.control-group
+            input#registerConfirmPassword.input.validate.form-control(type='password' placeholder='Confirm Password' data-validation-required-message='Please re-enter password' required='' data-validation-match-match='registerPassword' data-validation-match-message='Password and Confirm Password does not match')
+            p.help-block.text-danger
+          .form-group
+            .form-check
+              input#readOnlyCheck.form-check-input(type='checkbox')
+              label.form-check-label(for='readOnlyCheck')
+                | Read Only
+              small#checkBoxHelp.form-text.text-muted
+                | Check this box to give the user Read Only access.
+          .form-group
+            label
+              | Select the accounts to give access to: 
+            .csp-accounts-container
+          .d-flex.justify-content-center
+            button#createSubUserSubmit.btn.btn-primary(data-style="expand-right") Create  
+
+block page-scripts
+  script(src=asset_base_path+'js/aws-region-pref.js')
+  script(src=asset_base_path+'js/datatable-lib.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+  script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/item-table.js')
+  script(src=asset_base_path+'js/constants.js')
+  script(src=asset_base_path+'js/csp-accounts-table.js')
+  script(src=asset_base_path+'js/user-ce.js')

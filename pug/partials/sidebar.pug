@@ -1,0 +1,53 @@
+.sidebar
+  nav.sidebar-nav
+    ul.nav
+      li.nav-item
+        a.nav-link(href='/i/dashboard.html')
+          i.nav-icon.icon-speedometer
+          |  Dashboard
+      li.nav-item.nav-dropdown
+        a.nav-link.nav-dropdown-toggle(href='#')
+          i.nav-icon.icon-exclamation
+          |  Action Center
+        ul.nav-dropdown-items
+          li.nav-item
+            a.nav-link(href='/i/security-issues.html')
+              i.nav-icon.icon-shield
+              |  Security Issues        
+          li.nav-item
+            a.nav-link(href='/i/maintenance-tasks.html')
+              i.nav-icon.icon-check
+              |  Maintenance Tasks        
+          li.nav-item
+            a.nav-link(href='/i/unused-resources.html')
+              i.nav-icon.icon-wallet
+              |  Cost Optimization
+      li.nav-item.nav-dropdown.toolkit
+        a.nav-link.nav-dropdown-toggle(href='#')
+          i.nav-icon.icon-wrench
+          |  Tookit
+        ul.nav-dropdown-items
+          li.nav-item
+            a.nav-link(href='/i/toolkit.html#generate_optimization_reprot', data-target='generate_optimization_reprot')
+              i.nav-icon.icon-wallet
+              |  AWS Optimization Report        
+          li.nav-item
+            a.nav-link(href='/i/toolkit.html#install_cw_agent', data-target='install_cw_agent')
+              i.nav-icon.icon-magnifier-add
+              |  Install CloudWatch Agent        
+          li.nav-item
+            a.nav-link(href='/i/aws-instance-scheduler.html', data-target='aws_instance_scheduler')
+              i.nav-icon.icon-clock
+              |  Schedule AWS Instances         
+      li.nav-item
+        a.nav-link(href='/i/integrations/index.html')
+          i.nav-icon.icon-link
+          |  Integrations
+      li.nav-item
+        a.nav-link(href='/i/tag-resources.html')
+          i.nav-icon.icon-star
+          |  Tag Resources
+      //- li.nav-item
+      //-   a.nav-link(href='/i/custom-page.html')
+      //-     i.nav-icon.icon-star
+      //-     |  Issue Settings

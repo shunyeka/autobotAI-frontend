@@ -1,0 +1,110 @@
+.issue-High-btn{
+    background-color:#ff5e5e;
+}
+.issue-Medium-btn{
+    background-color:#ffc852;
+}
+.issue-Low-btn{
+    background-color:#f6ef9a;
+}
+.issue-Informational-btn{
+    background-color:#aec5dc;
+}
+.collapse-High-area{
+    background-color: #ffe0e0;
+}
+.collapse-Medium-area{
+    background-color: #ffebc4;
+}
+.collapse-Low-area{
+    background-color: #fcf9de;
+}
+.collapse-Informational-area{
+    background-color: #dee8f2;
+}
+.issue-btn{
+    font-size:1rem;
+    font-weight: 600;
+    display: block;
+    text-align: left;
+}
+.issue-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav-category-link {
+    font-size:1rem;
+    font-weight: 600;
+}
+
+.nav-category-link:hover {
+    text-decoration: underline;
+    background-color: white;
+}
+
+/* spinner added dated: 05 march 2020 */
+.spinner-border{
+    display:none;
+    float: right;
+    width:1.2rem;
+    height:1.2rem;
+    margin-top: 6px;
+    margin-left: 10px;
+    border: 0.10em solid currentColor;
+    border-right-color: transparent;
+}
+
+/* ignore button added dated: 05 march 2020 */
+.value-ignore,.value-ignored,.issue-ignored,.issue-ignore{
+    float: right;
+    cursor:pointer;
+    font-weight:400;
+}
+.value-ignore:hover,.value-ignored:hover{
+    text-decoration: underline;
+}
+.issue-ignore:hover,.issue-ignored:hover{
+    text-decoration: underline;
+}
+.issue-body-ignored,.issue-topic-ignored,.issue-value-ignored{
+    background:gray;
+    color:white;
+}
+/* idescription word wrap dated: 05 march 2020 */
+.description p,.description a{
+    word-wrap: break-word;
+}
+/* filter */
+.fa-filter{
+    cursor: pointer;
+    float: right;
+}
+.filter{
+    display:none;
+}
+.filter-show{
+    display:flex;
+}
+.pointer-events-none{
+    pointer-events:none;
+}
+/* nav link background and border changes */
+.issue-settings .nav-tabs a.nav-link{
+    background: #d1d1d1!important;
+    border-right: 1px solid #e4e5e6!important;
+    border-left: 1px solid #e4e5e6!important;
+    color: #000000
+}
+.issue-settings .nav-tabs a.nav-link:first-child{
+    border-left: 0!important;
+}
+.issue-settings .nav-tabs a.nav-link.active{
+    background: #FFFFFF !important;
+}
+.issue-settings .nav-tabs a.nav-link.active:first-child{
+    border-left: 1px solid #d1d1d1!important;
+}
+.issue-topic-ignored:hover{
+    color:#FFFFFF!important;
+}

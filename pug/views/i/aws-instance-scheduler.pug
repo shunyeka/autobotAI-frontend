@@ -1,0 +1,86 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "Toolkit autobotAI - Alexa Business skill for cloud management and DevOps operations"
+  title=title
+  link(href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css' rel='stylesheet')
+
+block page-scripts  
+  script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js' type="text/javascript")
+  script(src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js' type="text/javascript")
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js' type="text/javascript")
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js' type="text/javascript")
+  script(src=asset_base_path+'js/router.js' type="text/javascript")  
+  script(src=asset_base_path+'js/item-table.js' type="text/javascript")
+  script(src=asset_base_path+'js/item-table-v2.js' type="text/javascript")
+  script(src=asset_base_path+'js/aws-instance-selectable.js' type="text/javascript")  
+  script(src=asset_base_path+'js/aws-instance-scheduler.js' type="text/javascript")  
+
+
+block view
+    .card
+      .card-header(data-toggle="tooltip" title="AWS Instance Scheduler")
+        strong
+          | AWS
+          | Instance
+          | Scheduler
+        button.btn.btn-sm.btn-primary.pull-right.bnt-view-toggle(data-toggle="collapse" data-target=".scheduler-views" aria-expanded="false")
+                  i.fa.fa-plus
+                  | Create
+      .card-body              
+        .row.scheduler-views.collapse.border-bottom
+          .col-12.mb-3
+            form#instance_scheduler_form.form-horizontal
+              .card-body
+                .form-group.row
+                  label.col-md-3.col-form-label(for="text-input") Schedule name
+                  .col-md-9
+                  input#schedule_name.form-control(type="text" name="text-input" placeholder="Text" style='background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;' required)
+                  span.help-block Enter Schedule name 
+                .form-group.row
+                  label.col-md-3.col-form-label(for="text-input") Description
+                  .col-md-9
+                  input#description.form-control(type="text" name="text-input" placeholder="Text" style='background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;' required)
+                  span.help-block Enter Description
+                .form-group.row
+                  span.col-0
+                  label.switch.switch-label.switch-pill.switch-success
+                    input.switch-input.time-selector-control(target="begintime" type="checkbox" checked="")
+                    span.switch-slider(data-checked="✓" data-unchecked="✕")
+                  span.col-2 Start Time
+                  span#timezone.text-secondary 
+                  .col-md-9
+                  input#begintime.form-control(name="Begintime" type="time" placeholder=" " required)
+                  span#errormessage.text-danger.d-none
+                .form-group.row
+                  span.col-0
+                  label.switch.switch-label.switch-pill.switch-success
+                    input.switch-input.time-selector-control(target="endtime" type="checkbox" checked="")
+                    span.switch-slider(data-checked="✓" data-unchecked="✕")
+                  span.col-2 Stop Time
+                  span.timezone.text-secondary 
+                  .col-md-9
+                  input#endtime.form-control(name="Endtime" type="time" placeholder=" " required)
+                  span#timeerrormessage.text-danger.d-none 
+                .form-group.row
+                  label.col-md-2.col-form-label Days
+                  .col-md-9.ml-5
+                  select#days.form-control
+                    option(selected="") week days
+                    option weekend
+                    option every day
+                    option custom
+                  label.col-md-2.col-form-label Select days 
+                  .input-group
+                    #checkbox.d-inline-flex.input-group
+                .row
+                  .instance-selector-container
+              div
+                button#schedule-submit.btn.btn-sm.btn-primary.btn-ladda(data-style="expand-right") Schedule
+                button.btn.btn-sm.btn-danger(type="reset")
+                  i.fa.fa-ban
+                  | Reset
+        .row.scheduler-views.collapse.show
+          .col-12
+            .h3 Schedules
+            div#schedules_table

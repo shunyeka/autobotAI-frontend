@@ -1,0 +1,73 @@
+extends /layout/default.pug
+
+block title
+  - var title = "User Guide with examples : "+app_desc
+  title=title
+  link(href=asset_base_path+'css/user-guide.css' rel='stylesheet')
+
+block view
+  section.call-to-action.banner-privacy
+    .container
+      .row
+        .col-md-12.subpage-title
+          // <h1>Privacy Policy</h1>
+  // Start User Guide Section
+  section.feature-section
+    .container
+      .row
+        .col-md-12.col-sm-12
+          .section-title.text-center
+            h3 User Guide
+            h4 How to use autobotAI Alexa skill?
+      .row.marb-30.example
+      // /.row
+    // /.container
+  // End User Guide Section
+
+block page-scripts
+  script(src=asset_base_path+'js/user-guide.js')
+
+block hbs-tmpls
+  script#examples-template(type='text/x-handlebars-template').
+    <div class="col-sm-12">
+      <div class="panel-group accordion" id="example-accordion" role="tablist" aria-multiselectable="true">
+        {{#each examples}}
+        <div class="panel panel-default">
+          <div class="panel-heading" style="cursor: pointer;" role="tab" id="headingOne" data-toggle="collapse" data-parent="#example-accordion" href="#collapse{{@index}}" aria-expanded="true" aria-controls="collapseOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#example-accordion" href="#collapse{{@index}}" aria-expanded="true" aria-controls="collapseOne">
+                <h4>{{example}}</h4>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse{{@index}}" class="panel-collapse collapse {{defaultOpen}}" role="tabpanel" aria-labelledby="headingOne" data-parent="#example-accordion">
+            <div class="panel-body">
+              <div class="row m-0 p-0">
+                <div class="col-lg-6 px-0 py-2">
+                  <div id="frame">
+                    <div class="content">
+                      <div class="messages">
+                        <ul>
+                          {{#each conversation}}
+                          <li class="{{class}}">
+                            <img src="assets/images/{{image}}" alt="">
+                            <p>{{text}}</p>
+                          </li>
+                          {{/each}}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 px-0 py-2">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="{{videoURL}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>

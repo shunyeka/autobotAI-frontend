@@ -1,0 +1,97 @@
+- var static = true
+doctype html
+include /partials/vars.pug
+
+html(lang='en')
+head
+  title autobotAI - Alexa for Business skill for cloud management and DevOps operations
+  include /partials/head.pug
+  link(rel='stylesheet' type='text/css' href=asset_base_path+'css/login-style.css')
+
+.login-wrap
+  .container.pt-3(style='text-align: left;')
+    a.navbar-brand.page-scroll.text-hide(href='index.html')
+    img(src=asset_base_path+'images/logo190x68.png' style='width: 190px;margin-bottom: 15px;')    
+  .login-html
+    input#sign-in-tab.sign-in(type='radio' name='tab' checked='')
+    label.tab(for='sign-in-tab') Login
+    input#sign-up-tab.sign-up(type='radio' name='tab')
+    label.tab(for='sign-up-tab') Register
+    input#forgot-pwd-tab.forgot-pwd(type='radio' name='tab' style='opacity: 0;')
+    input#verify-tab.verify(type='radio' name='tab' style='opacity: 0;')
+    .login-form
+      .sign-in-htm
+        form#loginForm(novalidate='')
+          .group.control-group
+            label.label(for='loginEmail') Email
+            input#loginEmail.input.validate(type='email' autocomplete='email' required='' data-validation-required-message='Please enter your email' data-validation-email-message='Please enter a valid email address')
+            p.help-block
+          .group.control-group
+            label.label(for='loginPassword') Password
+            input#loginPassword.input.validate(type='password' required='' data-validation-required-message='Password is required' minlength='8' data-validation-minlength-message='Password length must be 8 chars')
+            p.help-block
+          .group
+            input.button(type='submit' value='Login')
+          .hr
+          .foot-lnk
+            label(for='forgot-pwd-tab') Forgot Password?
+      .sign-up-htm
+        form#registrationForm(novalidate='')
+          .group.control-group
+            input#registerName.input.validate(type='text' placeholder='Name' autocomplete='name' required='' data-validation-required-message='Please enter your Name')
+            p.help-block
+          .group.control-group
+            input#registerEmail.input.validate(type='email' autocomplete='email' placeholder='Email' required='' data-validation-required-message='Please enter valid email')
+            p.help-block
+          .group.control-group
+            select#registerPhoneCode.input.country-code.validate
+              option(value='') Country
+            input#registerPhone.input.phone.validate(autocomplete='tel-national' pattern='^\\d{4,15}$' placeholder='Phone' required='' data-validation-required-message='Please enter valid phone number' data-validation-pattern-message='Phone enter valid phone number' type='text')
+            p.help-block
+          .group.control-group
+            input#registerPassword.input.validate(type='password' name='registerPassword' placeholder='Password' data-validation-required-message='Please enter password' required='' pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$^!%*?#&()-=_+])[A-Za-z\\d$@$^!%*?#&()-=_+]{8,}' data-validation-pattern-message='Minimum 8 chars, at least one uppercase, one lowercase, one number and one special char (@$^!%*?#&()-=_+)')
+            p.help-block
+          .group.control-group
+            input#registerConfirmPassword.input.validate(type='password' placeholder='Confirm Password' data-validation-required-message='Please re-enter password' required='' data-validation-match-match='registerPassword' data-validation-match-message='Password and Confirm Password does not match')
+            p.help-block
+          .group.control-group
+            input.button(type='submit' value='Register')
+          .hr
+          .foot-lnk
+            label(for='sign-in-tab') Already Registered?
+      .verify-htm
+        p
+          | Registration successful. Please check your email inbox or spam folder for your verification link.
+        br
+        form#resendVerifyLink(novalidate='')
+          .group.control-group
+            input#verificationEmail.input.validate(type='email' placeholder='Email' autocomplete='email' required='' data-validation-required-message='Please enter your email' data-validation-email-message='Please enter a valid email address')
+            p.help-block
+          .group
+            input.button(type='submit' value='Resend Verification Link')
+          .hr
+      .forgot-pwd-htm
+        p Enter email to get reset password verification code
+        br
+        form#resetPasswordForm(novalidate='')
+          .group.control-group.verify-init
+            input#resetEmail.input.validate(type='email' placeholder='Email' autocomplete='email' required='' data-validation-required-message='Please enter your email' data-validation-email-message='Please enter a valid email address')
+            p.help-block
+          .group.control-group.verify-final
+            input#resetPassword.input.validate(type='password' name='resetPassword' placeholder='Password' data-validation-required-message='Please enter password' required='' pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$^!%*?#&()-=_+])[A-Za-z\d$@$^!%*?#&()-=_+]{8,}' data-validation-pattern-message='Minimum 8 chars, at least one uppercase, one lowercase, one number and one special char(@$^!%*?#&()-=_+)')
+            p.help-block
+          .group.control-group.verify-final
+            input#resetConfirmPassword.input.validate(type='password' placeholder='Confirm Password' data-validation-required-message='Please re-enter password' required='' data-validation-match-match='resetPassword' data-validation-match-message='Password and Confirm Password does not match')
+            p.help-block
+          .group.control-group.verify-final
+            input#resetVerificationCode.input.validate(placeholder='Verification Code' type='number' required='' data-validation-required-message='Verification code is required' minlength='6' data-validation-minlength-message='Verification Code must be of 6 digit')
+            p.help-block
+          .group
+            input.button(type='submit' value='Send Verification Code')
+          .hr
+          .foot-lnk
+            label(for='sign-in-tab') Back
+include /partials/footer-private.pug
+script(src=asset_base_path+'js/constants.js')
+script(src=asset_base_path+'js/router.js')
+script(src=asset_base_path+'js/authz.js')

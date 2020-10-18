@@ -1,0 +1,60 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "AWS Account Setup for autobotAI - Alexa for Business skill for cloud management and DevOps operations"
+  title=title
+
+block view
+  .animated.fadeIn
+    .row.top-buffer.aws-setup-cnt
+      .col-md-12.mx-auto
+        h2 AWS Account Setup
+        span
+          | autobotAI needs AWS IAM role configuration in your AWS account to execute cost optimisation, security
+          | assessment or any other
+          | management tasks. By clicking on bellow launch configuration. autobotAI will redirect you to your AWS
+          | management
+          | portal where it will configure &quot;AutobotAIRole&quot; with required access and permissions. autobotAI require read,
+          | list and resource attribute modification permission for different aws services administration. autobotAI
+          | does
+          | not execute any resource modification which can affect any type of workload availability and durability.
+    div.mt-2
+      h3 Cloud Service Provider Accounts
+      .csp-accounts-container No Accounts setup yet...
+    hr(style='height: 2px;border: 1px solid;')
+    .row.top-buffer.aws-setup-cnt.control-group
+      .col-md-12.mx-auto
+        h3 Step 1: Launch cloudformation stack for account permission
+        span
+          | Click bellow button to allow autobotAI to access your AWS account.
+        br
+        br
+        label#account-alias-label Account Name:
+        input#account-alias.mx-1.px-1.py-0(pattern='([a-zA-Z0-9](\\s)?)+' data-validation-pattern-message='The alias/name can only have alpha numerica characters.' required='' data-validation-required-message='Please enter name/alias for the account, It will help you identify.' minlength="4" data-validation-minlength-message="The name must be between 4 to 16 characters." maxlength="16" data-validation-maxlength-message="Too long: Maximum of '16' characters" type='text' style='border:2px solid powderblue;border-radius:3px; height:27px')
+        p.help-block.text-danger(style='margin-left: 80px;')
+        a#launch-stack-btn.d-block(style='cursor: pointer; margin-top:5px;' target='_blank')
+          img.pb-1(src=asset_base_path+'images/cloudformation-launch-stack.png')
+    //
+      <hr />
+      <div class="row top-buffer aws-setup-cnt">
+      <div class="col-md-12 mx-auto">
+      <h3>Step 2: Verify the AWS account configuration</h3>
+      <span>
+      Once the cloudformation stack deployment completes you can click on verify button to proceed for AWS
+      resource tagging window.
+      </span>
+      <br />
+      <br />
+      <button class="btn btn-primary" id="verifyAccess">Verify Access</button>
+      </div>
+      </div>
+
+block page-scripts
+  script(src=asset_base_path+'js/aws-region-pref.js')
+  script(src=asset_base_path+'js/datatable-lib.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+  script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/item-table.js')
+  script(src=asset_base_path+'js/csp-accounts-table.js')
+  script(src=asset_base_path+'js/aws-setup.js')

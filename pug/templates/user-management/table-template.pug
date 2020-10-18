@@ -1,0 +1,7 @@
+table.table.table-striped.table-bordered.resource-table(style='width: 100%')
+  thead
+    tr
+      each prop in primaryPropertiesInOrder
+        th #{prop.displayName}          
+      th.no-sort Action
+  tbody.resource-table-body

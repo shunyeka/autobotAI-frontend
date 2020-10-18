@@ -1,0 +1,18 @@
+table(cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;")
+  tr
+    td Description:
+    td= d.description
+  tr
+    td Timezone:
+    td= d.timezone
+  tr
+    td Weekdays:
+    td= d.weekdays
+  tr
+    td Instances:
+    td
+      ul
+        each instances, region in d.instances
+          ul= region
+            each instance in instances
+              li= instance

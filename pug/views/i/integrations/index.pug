@@ -1,0 +1,56 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "AWS Account Setup for autobotAI - Alexa for Business skill for cloud management and DevOps operations"
+  title=title
+
+block view
+  .integrations.mt-4
+    h6 Cloud Service Providers
+    hr.my-0
+    .services.pl-md-0.mb-4(style='padding-left:82px')
+      .cloud-servicer-providers.d-flex.justify-content-start
+        a(href='/i/integrations/aws-account-setup.html')
+          .aws
+            img(src=asset_base_path+'images/integration/aws.png' alt='aws' height='50%')
+            p Configure
+        a(href='#')
+          .google
+            img(src=asset_base_path+'images/integration/gcp.png' alt='gcp' height='50%')
+            p Coming soon...
+        a(href='#')
+          .asure
+            img(src=asset_base_path+'images/integration/azure.png' alt='azure' height='40%')
+            p Coming soon...
+    h6 Security Tools
+    hr.my-0
+    .services.pl-md-0.mb-4(style='padding-left:82px')
+      .security-tools.d-flex.justify-content-start
+        a(href='#')
+          .snyk(style='padding-top:0px')
+            img(src=asset_base_path+'images/integration/snyk.png' alt='snyk' height='70%')
+            p Coming soon...
+    h6 Notifications
+    hr.my-0
+    .services.pl-md-0.mb-4(style='padding-left:82px')
+      .notifications.d-flex.justify-content-start
+        a(href='#')
+          .slack
+            img(src=asset_base_path+'images/integration/slack.png' alt='slack' height='40%')
+            p Contact us
+        a(href='#')
+          .jira
+            img(src=asset_base_path+'images/integration/jira.png' alt='jira' height='50%')
+            p Contact us
+    h6 Custom Automation
+    hr.my-0
+    .services.pl-md-0.mb-4(style='padding-left:82px')
+      .custom-automation.d-flex.justify-content-start
+        a(href='#')
+          .webhook
+            img(src=asset_base_path+'images/integration/webhook.png' alt='webhook' height='50%')
+            p Coming soon...
+          
+block page-scripts
+  script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/integrations.js')

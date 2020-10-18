@@ -1,0 +1,25 @@
+footer.app-footer
+  div.ml-auto.mr-auto  
+    a(href='https://example.com')=app_name
+    span &nbsp;&copy;
+    span=company_name  
+#loader
+  .message
+    h3
+  .spinner
+    .dot1
+    .dot2
+script(src='//code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous')
+script(src='//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous')
+script(src='//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js' integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js', integrity='sha256-s87nschhfp/x1/4+QUtIa99el2ot5IMQLrumROuHZbc=', crossorigin='anonymous')
+script(src=asset_base_path+'js/config.js')
+script(src=asset_base_path+'js/common-lib.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js' integrity='sha256-WRc/eG3R84AverJv0zmqxAmdwQxstUpqkiE+avJ3WSo=' crossorigin='anonymous')
+script(src=asset_base_path+'js/private-lib.min.js')
+script(src=template_base_path+'all.js')
+template#awsRegionPref(src=asset_base_path+'js/hbs-templates/aws-region-pref.js')
+script.
+  let accountSelector = new AccountSelector({
+    container: 'div.account-select'
+  });

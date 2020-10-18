@@ -1,0 +1,20 @@
+- var static = true
+doctype html
+include /partials/vars.pug
+
+html(lang='en')
+  head
+    include /partials/head.pug
+    block title
+      title=title    
+  body.app.header-fixed.sidebar-fixed.aside-menu-fixed.sidebar-lg-show    
+    include /partials/navbar-private.pug
+    .app-body
+      include /partials/sidebar.pug
+      main.main
+        .container-fluid.mt-3.px-2.px-lg-5
+          block view
+    include /partials/footer-private.pug
+    block page-scripts
+  block hbs-tmpls
+  block modal

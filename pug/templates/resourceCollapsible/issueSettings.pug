@@ -1,0 +1,21 @@
+ul#issue-category-tab.nav.nav-tabs(role='tablist')
+  each category in Categories
+    li.nav-item.nav-category-item
+      a.nav-link.nav-category-link.text-center(id='issue-'+category.category+'-tab' data-toggle='tab' href='#issue-'+category.category role='tab' aria-controls=category.category aria-selected='true' class=category.category==='Security'?'active show':'')
+        p.m-0 #{category.category}
+        p.m-0 ( #{category.count} Issues )
+#issue-category-content.tab-content
+  each category in Categories
+    .tab-pane.p-2.fade(id='issue-'+category.category role='tabpanel' aria-labelledby='issue-'+category.category class=category.category==='Security'?'active show':'')
+      each topic in category.topics
+        .issue-btn.p-2.mb-1.btn.clearfix(class=topic.ignored?'issue-'+topic.importance+'-btn issue-topic-ignored':'issue-'+topic.importance+'-btn' data-toggle='collapse' data-target='#collapse-issue-'+topic.id aria-expanded='false' aria-controls='collapse-issue-'+topic.id)
+          span.count #{topic.count} 
+          span.topic(id='t-'+topic.id) #{topic.topic}
+          div.spinner-border(role='status')
+            span.sr-only Loading...
+          if topic.ignored === true
+            span.issue-ignored ignored
+          else
+            span.issue-ignore ignore
+        .issue-body.collapse.border.border-secondary.rounded.p-2.mb-2(class=topic.ignored?'collapse-'+topic.importance+'-area issue-body-ignored':'collapse-'+topic.importance+'-area' id='collapse-issue-'+topic.id data-parent='#issue-'+category.category)
+          .issue-info

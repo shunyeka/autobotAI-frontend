@@ -1,0 +1,11 @@
+table.table.table-striped.table-bordered.resource-table(style='width: 100%')
+  thead
+    tr
+      each prop in primaryPropertiesInOrder
+        if prop.sortable
+          th #{prop.displayName}
+        else
+          th.no-sort #{prop.displayName}          
+      th.no-sort Action
+      th.no-sort More
+  tbody.resource-table-body

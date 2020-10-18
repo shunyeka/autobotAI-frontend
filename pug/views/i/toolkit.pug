@@ -1,0 +1,42 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "Maintenance Tasks autobotAI - Alexa Business skill for cloud management and DevOps operations"
+  title=title
+  link(href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css' rel='stylesheet')
+
+block view
+  h3(data-toggle='tooltip' title='All the tools in autobotAI toolkit to help you manager infrastructure better. Let us know if you would like to add anything.') Toolkit  
+  #generate_optimization_reprot.toolkit-content
+    h4
+      | AWS Optimization Report.
+    b(style='color: red;') Note: This can be only generated if the account has preimium support enabled.
+    .row
+      .col-md-12
+        .tk-container
+  #install_cw_agent.toolkit-content
+    h4
+      | Install CloudWatch agent on selected instances to start monitoring Memory and Disk/Storage usage.
+    b(style='color: red;') Note: This can be only used on instances managed by SSM.
+    .row
+      .col-md-12
+        .instance-selector-container
+          | List of instances table shown here.    
+
+block page-scripts
+  script(src=asset_base_path+'js/router.js')
+  script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+  script(src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+  script(src=asset_base_path+'js/item-table.js')
+  script(src=asset_base_path+'js/aws-instance-selectable.js')
+  script(src=asset_base_path+'js/aws-cw-agent-install.js')
+  script(src=asset_base_path+'js/aws-optimization-report.js')
+  script(src=asset_base_path+'js/toolkit.js')
+
+block hbs-tmpls
+  script.
+    $(document).ready(function () {
+    var toolkit = new Toolkit();
+    })

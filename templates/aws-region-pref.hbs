@@ -1,0 +1,36 @@
+<div class="modal fade" id="modalRegionSelect" tabindex="-1" role="dialog" aria-labelledby="regionSelect" aria-hidden="true" {{#if force}}data-backdrop="static" data-keyboard="false"{{/if}}>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">AWS Region Preference</h4>
+        {{#unless force}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        {{/unless}}
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">          
+          <label data-error="wrong" data-success="right" for="defaultRegion">Default Region</label>
+          <select id='defaultRegion'>
+            {{#each currentPref.allRegions}}
+            <option value="{{this.name}}">{{this.name}} ({{this.id}})</option>
+            {{/each}}
+          </select>          
+        </div>
+        <hr/>
+        <div class="md-form mb-4">
+          <label data-error="wrong" data-success="right" for="activeRegions">Regions in Use</label>
+          <div id='activeRegions'>
+            {{#each currentPref.allRegions}}
+            <input type="checkbox" value="{{this.name}}" > {{this.name}} ({{this.id}})</input><br/>
+            {{/each}}
+          </div>          
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default" id='saveRegionPref'>Save</button>
+      </div>
+    </div>
+  </div>
+</div>

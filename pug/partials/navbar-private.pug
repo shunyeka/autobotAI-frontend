@@ -1,0 +1,31 @@
+header.app-header.navbar
+  button.navbar-toggler.sidebar-toggler.d-lg-none.mr-auto(type='button' data-toggle='sidebar-show')
+    span.navbar-toggler-icon
+  a.navbar-brand(href='#')
+    img.navbar-brand-full(src=asset_base_path+'images/logo190x68.png' width='140' height='50' alt='autobotAI')
+    img.navbar-brand-minimized(src=asset_base_path+'images/logo190x68.png' width='30' height='30' alt='autobotAI')
+  button.navbar-toggler.sidebar-toggler.d-md-down-none(type='button' data-toggle='sidebar-lg-show')
+    span.navbar-toggler-icon
+  ul.nav.navbar-nav.ml-auto
+    li.nav-item.d-md-down-none
+      a.nav-link(href='#')
+        i.fa.fa-bell
+        span.badge.badge-pill.badge-danger 0 
+    li.nav-item.dropdown
+      a.nav-link(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false')
+        i.fa.fa-user
+      .dropdown-menu.dropdown-menu-right(style="width:200px")
+        .dropdown-header.text-center
+          strong Accounts
+        .account-select
+        .dropdown-header.text-center
+          strong Settings
+        a.dropdown-item(href="/i/my-profile.html")
+          i.fa.fa-cog
+          |  My Profile
+        a.dropdown-item(href="/i/user-management.html")
+          i.fa.fa-users
+          |  User Management
+        a.dropdown-item.logout(href='#')
+          i.fa.fa-lock
+          |  Logout

@@ -1,0 +1,21 @@
+#modalRegionSelect.modal.fade(tabindex='-1' role='dialog' aria-labelledby='regionSelect' aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header.text-center
+        h4.modal-title.w-100.font-weight-bold AWS Region Preference
+        //
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      .modal-body.mx-3
+        .md-form.mb-5
+          i.fa.fa-envelope.prefix.grey-text
+          select#defaultRegion
+          label(data-error='wrong' data-success='right' for='defaultForm-email') Default Region
+        .md-form.mb-4
+          i.fa.fa-lock.prefix.grey-text
+          input#defaultForm-pass.form-control.validate(type='password')
+          label(data-error='wrong' data-success='right' for='defaultForm-pass') Regions in Use
+          #regionList
+      .modal-footer.d-flex.justify-content-center
+        button.btn.btn-default Login

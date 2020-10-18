@@ -1,0 +1,23 @@
+form#contactForm(novalidate='')
+  .row
+    .col-md-6
+      .form-group.control-group
+        input.form-control.validate(type='text' autocomplete='name' placeholder='Your Name *' name='contactName' required='' data-validation-required-message='Please enter your name')
+        p.help-block.text-danger
+      .form-group.control-group
+        input.form-control.validate(type='email' autocomplete='email' placeholder='Your Email *' name='contactEmail' required='' data-validation-required-message='Please enter your email' data-validation-email-message='Please enter a valid email address')
+        p.help-block.text-danger
+      .form-group.control-group
+        input.form-control.validate(type='tel' autocomplete='tel-national' placeholder='Your Phone *' name='contactPhone' required='' data-validation-required-message='Please enter your phone number')
+        p.help-block.text-danger
+    .col-md-6
+      .form-group.control-group
+        textarea.form-control.validate(placeholder='Your Message *' name='contactMessage' required='' data-validation-required-message='Please enter your message')
+        p.help-block.text-danger
+    .clearfix
+    .col-lg-6
+      .g-recaptcha(data-sitekey='6LdYXU0UAAAAAP5Xh7jjcj8huFSKy39q6b7omBnZ')
+      p.help-block.text-danger
+    .col-lg-6
+      // <button type="submit" class="btn btn-primary">Send</button>
+      input.btn.btn-primary(type='submit' value='Send')

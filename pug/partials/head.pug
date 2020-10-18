@@ -1,0 +1,88 @@
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible' content='IE=edge')
+meta(name='viewport' content='width=device-width, initial-scale=1')
+meta(name='author' content=author)
+link(rel='apple-touch-icon' sizes='76x76' href=asset_base_path+'images/apple-touch-icon.png')
+link(rel='icon' type='image/png' sizes='32x32' href=asset_base_path+'images/favicon-32x32.png')
+link(rel='icon' type='image/png' sizes='16x16' href=asset_base_path+'images/favicon-16x16.png')
+link(rel='manifest' href=asset_base_path+'images/site.webmanifest')
+link(rel='mask-icon' href=asset_base_path+'images/safari-pinned-tab.svg' color='#5bbad5')
+link(rel='shortcut icon' href=asset_base_path+'images/favicon.ico')
+meta(name='msapplication-TileColor' content='#da532c')
+meta(name='msapplication-config' content=asset_base_path+'images/browserconfig.xml')
+meta(name='theme-color' content='#ffffff')
+meta(name='description' content=description)
+link(rel='canonical' href='https://example.com/')
+meta(property='og:locale' content='en_US')
+meta(property='og:type' content='article')
+meta(property='og:title' content=title)
+meta(property='og:description' content=description)
+meta(property='og:url' content='https://example.com/')
+meta(property='og:site_name' content='autobotAI')
+meta(property='article:publisher' content=s_media.facebook)
+meta(property='article:tag' content='Alexa')
+meta(property='article:tag' content='AWS')
+meta(property='article:tag' content='AWS Cloud Cost Management')
+meta(property='article:tag' content='AWS Cloud Security Compliance')
+meta(property='article:tag' content='DevOps, CloudOps, SecOps and Automation')
+meta(property='og:image' content='https://example.com/assets/images/banner2.png')
+meta(property='og:image:secure_url' content='https://example.com/assets/images/banner2.png')
+meta(property='og:image:width' content='1040')
+meta(property='og:image:height' content='425')
+meta(name='twitter:card' content='summary_large_image')
+meta(name='twitter:description' content=description)
+meta(name='twitter:title' content=title)
+meta(name='twitter:site' content='@autobot_AI')
+meta(name='twitter:image' content='https://example.com/assets/images/banner2.png')
+meta(name='twitter:creator' content='@autobot_AI')
+link(href='/assets/css/lib.css' rel='stylesheet')
+link(href='/assets/css/scss/style.css' rel='stylesheet')
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css')
+//- This is required only for public pages.
+link(href='/assets/css/responsive.css' rel='stylesheet')
+link(href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet')
+
+script(type='application/ld+json').
+  {
+  "@context": "http:\\/\/schema.org",
+  "@type": "WebSite",
+  "@id": "#website",
+  "url": "https:\\/\/example.com\/",
+  "name": "autobotAI - Cloud Governance Solution for Cost Management, Security Compliance and Automation. Voice Enabled (Powered by Alexa for business) enabled - example.com"
+  }
+script(type='application/ld+json').
+  {
+  "@context": "http:\\/\/schema.org",
+  "@type": "Organization",
+  "url": "https:\\/\/example.com\/",
+  "sameAs": [
+  "https:\\/\/www.facebook.com\/awsautobot\/",
+  "https:\\/\/www.linkedin.com\/company\/autobot-live",
+  "https:\\/\/www.youtube.com\/channel\/UC8-TCjFJwsTUEh5EZS2sFvg",
+  "https:\\/\/twitter.com\/autobotAi"
+  ],
+  "@id": "#organization",
+  "name": "ShunyEka Systems Private Limited",
+  "logo": "https:\\/\/example.com\/assets\/images\/logo450X160.png"
+  }
+// Google Tag Manager
+script.
+  (function (w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({
+  'gtm.start': new Date().getTime(),
+  event: 'gtm.js'
+  });
+  var f = d.getElementsByTagName(s)[0],
+  j = d.createElement(s),
+  dl = l != 'dataLayer' ? '&l=' + l : '';
+  j.async = true;
+  j.src =
+  'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+  f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-TVDTCS4');
+// End Google Tag Manager
+// Google Tag Manager (noscript)
+noscript
+  iframe(src='https://www.googletagmanager.com/ns.html?id=GTM-TVDTCS4' height='0' width='0' style='display:none;visibility:hidden')
+// End Google Tag Manager (noscript)

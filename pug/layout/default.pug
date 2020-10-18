@@ -1,0 +1,32 @@
+- var static = true
+doctype html
+include /partials/vars.pug
+
+html(lang='en')
+  head
+    include /partials/head.pug
+    block title
+      title=title
+    link(href=asset_base_path+'css/responsive.css' rel='stylesheet')
+    link(href=asset_base_path+'css/style-public.css' rel='stylesheet')
+    link(href=asset_base_path+'css/login-style.css' rel='stylesheet')
+    
+    block styles
+
+  body.index
+    // Navigation
+    nav.navbar.navbar-expand-xl.navbar-dark.navbar-default.fixed-top(style='padding:0 0 10px;background:black;')
+      include /partials/logo.pug
+      button.navbar-toggler.d-block.d-sm-none(type='button' data-toggle='collapse' data-target='#main-menu' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      include /partials/public-navbar.pug
+      button.navbar-toggler.d-none.d-sm-block.d-xl-none(type='button' data-toggle='collapse' data-target='#main-menu' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      
+    block view
+    include /partials/footer-public.pug
+    
+    script(src=asset_base_path+'js/public-lib.min.js')
+    script(src=asset_base_path+'js/script.js')
+    block page-scripts
+    block hbs-tmpls

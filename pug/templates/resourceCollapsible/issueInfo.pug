@@ -1,0 +1,29 @@
+p.issue-desc.font-weight-bold
+  | #{Subject}
+  a.read-more.font-weight-bold.ml-3(class='read-issue-'+strid data-toggle='collapse' href='#collapse-read-issue-'+strid role='button' aria-expanded='false' aria-controls='collapse-read-issue-'+strid)
+    | Read More
+.description.collapse.p-3(id='collapse-read-issue-'+strid)
+  p
+    span.info-line.mx-3
+      span.font-weight-bold.mr-3 Category:
+      |  #{Category}
+    span.info-line.mx-3
+      span.font-weight-bold.mr-3 Importance:
+      |  #{Importance}
+  p #{Description}
+  if Link!="-"
+    a #{Links}
+hr
+div(class="e-"+strid)
+  h5 Example
+  each example in Example
+    .issue-example.p-2.m-1.border.border-dark.rounded #{example}
+div(class="v-"+strid)
+  h5 Values
+  each value in Values
+    .issue-value.p-2.m-1.border.border-dark.rounded(class=value.is_ignored?'issue-value-ignored':'') 
+      span.value-name #{value.name}
+      if value.is_ignored === true
+        span.value-ignored.pointer-events-none ignored
+      else
+        span.value-ignore ignore

@@ -1,0 +1,39 @@
+if hasResources
+  .progress-group
+    .progress-group-header
+      div Resource Utilization Summary
+    .progress-group-bars
+      .progress.progress-lg
+        .progress-bar(class='progress-bar bg-danger' role='progressbar' style='width: '+data.underProvisioned.percent+'%' aria-valuenow=data.underProvisioned.percent aria-valuemin='0' aria-valuemax='100') #{data.underProvisioned.percent}%
+        .progress-bar(class='progress-bar bg-success' role='progressbar' style='width: '+data.optimised.percent+'%' aria-valuenow=data.optimised.percent aria-valuemin='0' aria-valuemax='100') #{data.optimised.percent}%
+        .progress-bar(class='progress-bar bg-warning' role='progressbar' style='width: '+data.overProvisioned.percent+'%' aria-valuenow=data.overProvisioned.percent aria-valuemin='0' aria-valuemax='100') #{data.overProvisioned.percent}%
+  .row
+    .col-3
+      .span.badge.badge-danger.p-2.mb-2.w-100= data.underProvisioned.count
+    .col-9
+      span Under-Provisioned Resources
+  .row
+    .col-3
+      .span.badge.badge-success.p-2.mb-2.w-100= data.optimised.count
+    .col-9
+      span Optimized Resources
+  .row
+    .col-3
+      .span.badge.badge-warning.p-2.mb-2.w-100= data.overProvisioned.count
+    .col-9
+      span Over-Provisioned Resources
+else
+  span AWS Compute Optimizer is not enabled.  
+  <button class="btn btn-pill btn-primary ml-lg-auto co-status" type="button">Enable It</button>
+
+script.
+  $(document).on('click', '.co-status', function(){
+  bootbox.alert(`<h3>Enable Compute Optimizer in your AWS account.</h3>
+  <h4>To sign up for Compute Optimizer</h4>
+  <ul>
+  <li>Sign in to the AWS Management Console and open the Compute Optimizer at https://console.aws.amazon.com/compute-optimizer/home.</li>
+  <li>Click on Get Started</li>
+  <li>On the next page select either "All accounts within this organization" or "Only this account" and click "Opt In"</li>
+  </ul>
+  <a href='https://aws.amazon.com/compute-optimizer/getting-started/'>AWS Compute Optimizer</a>`);
+  });

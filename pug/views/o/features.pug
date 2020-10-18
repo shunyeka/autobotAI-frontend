@@ -1,0 +1,132 @@
+extends /layout/default.pug
+
+block title
+  - var title = "Features : "+app_desc
+  title=title
+
+block view
+  section.call-to-action.banner-privacy
+    .container
+      .row
+        .col-md-12.subpage-title
+          // <h1>Privacy Policy</h1>
+  // Start Feature Section
+  section.feature-section
+    .container-fluid
+      .row
+        .col-md-12.col-sm-12
+          .section-title.text-center
+            h3 Features
+      .row.marb-30.features
+        .col-12
+          ul#featureTabs.nav.nav-tabs.nav-justified(role='tablist')
+            li.nav-item
+              a#gui-tab.nav-link.active(data-toggle='tab' href='#gui' role='tab' aria-controls='gui' aria-selected='true') Web Interface
+            li.nav-item
+              a#vui-tab.nav-link(data-toggle='tab' href='#vui' role='tab' aria-controls='vui' aria-selected='false') VUI (Alexa)
+            li.nav-item
+              a#chatops-tab.nav-link(data-toggle='tab' href='#chatops' role='tab' aria-controls='chatops' aria-selected='false') ChatOps (Chat Bot)
+        .col-12          
+          #featureTabsContent.tab-content
+            #gui.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='gui-tab')
+              .row
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-money
+                    .feature-content
+                      h4 autobotAI ChatOps and Alexa
+                      p
+                        | autobotAI ChatOps can become virtual cloud assistance manager. 
+                        | It can automate Level 1 operations tasks and works with backend real human intelligence for task handover. 
+                        | You can also use the Alexa skill to interact with it more naturally.
+                // /.col-md-4
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-lock
+                    .feature-content
+                      h4 Security Compliance Management
+                      p
+                        | Security is a big deal. Now it is easier to know how your infrastructure stacks up to the best
+                        | practices in
+                        | security compliance.
+                // /.col-md-4
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-shield
+                    .feature-content
+                      h4 Alert Management
+                      p
+                        | autobotAI automatically checks for CloudWatch alarm configuration and configures all the important alarms in minutes. 
+                        | autobotAI helps you configure auto-recovery for all the EC2 instances all you have to do is say it. 
+                        | It also cleans up unused alarms to save cost.
+                // /.col-md-4
+              // /.row
+              .row
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-credit-card
+                    .feature-content
+                      h4 Cost Optimisation
+                      p
+                        | Know your bill. Manage budgets. Get to know your monthly, quarterly or yearly forecast before budget exceeds the threshold. 
+                        | autobotAI identifies unwanted resources and hints for cost optimisation. 
+                        | It is really good at finding out resources which are not required or not in use still costing you a lot of money.
+                // /.col-md-4
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-calendar
+                    .feature-content
+                      h4 AWS Scheduled Events
+                      p
+                        | Keep eye on AWS Scheduled events affecting your resources just by chatting with autobotAI. 
+                        | This could prevent any downtime or data loss. 
+                        | Always ask autobotAI about scheduled events while you are driving to work.
+                // /.col-md-4
+                .col-md-4.col-sm-6.col-xs-12
+                  .feature
+                    i.fa.fa-server
+                    .feature-content
+                      h4 Automation
+                      p
+                        | autobotAI has many automations which help you manage your infrastructure easily. 
+                        | It can schedule EC2 instances for you, configure CloudWatch agent, 
+                        | generate compliance reports and much more.
+                .col-md-12.text-center
+            #vui.tab-pane.fade(role='tabpanel' aria-labelledby='vui-tab')
+              .row 
+            #chatops.tab-pane.fade(role='tabpanel' aria-labelledby='chatops-tab')
+              .row 
+      // /.row
+    // /.container
+  // End Feature Section
+
+block page-scripts
+  script(src=asset_base_path+'js/features.js')
+
+block hbs-tmpls
+  script#features-with-category-template(type='text/x-handlebars-template').
+    {{#each features}}
+    <div class="col-sm-6">
+      <h4 class="feature-title">{{category}}</h4>
+      <div class="panel-group" id="accordion{{@index}}" role="tablist" aria-multiselectable="true">
+        {{#each utterations}}
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion{{@../index}}" href="#collapse{{@../index}}{{@index}}" aria-expanded="true" aria-controls="collapseOne">
+                <i>"{{utteration}}"</i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse{{@../index}}{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <strong>Description:</strong> {{description}}
+              <hr/>
+              <strong>Examples:</strong> {{examples}}
+            </div>
+          </div> 
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}

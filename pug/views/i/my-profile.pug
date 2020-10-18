@@ -1,0 +1,68 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "Profile Settings for autobotAI - Alexa for Business skill for cloud management and DevOps operations"
+  title=title
+
+block view  
+    #profile-accordion.accordion
+      .card
+        #personal-header.card-header
+          h5.mb-0
+          button.btn.btn-link(type="button" data-toggle="collapse" data-target="#personal-info" aria-expanded="true" aria-controls="personal-info")
+            | Personal Info
+        #personal-info.collapse.show(aria-labelledby="personal-header" data-parent="#profile-accordion")
+          .card-body
+            form
+              .form-row
+                .form-group.col-sm-2
+                  label(for='country-code') Country Code
+                  select#phone-code.form-control
+                    option(value='') Country
+                .form-group.col-sm-10.group.control-group
+                  label(for='phone-number') Phone Number
+                  input#phone-number.form-control.personal-validate(type='number' placeholder='Phone Number' autocomplete='tel-national' pattern='^\\d{4,15}$'  required='' data-validation-required-message='Please enter valid phone number' data-validation-pattern-message='Phone enter valid phone number' )
+                  p.help-block.text-danger
+              .d-flex.justify-content-center
+                button#personal-submit.btn.btn-primary.btn-ladda(data-style="expand-right") Update
+      .card
+        #password-header.card-header
+          h5.mb-0
+          button.btn.btn-link(type="button" data-toggle="collapse" data-target="#password-change" aria-expanded="true" aria-controls="password-change")
+            | Change Password
+        #password-change.collapse(aria-labelledby="password-header" data-parent="#profile-accordion")
+          .card-body
+            form(novalidate='')
+              .form-group.group.control-group
+                label(for="current-password") Current Password
+                input#current-password.form-control.password-validate.input(type="password" placeholder="Please enter current Password.")
+                p.help-block.text-danger
+              .form-group.group.control-group
+                label(for="n-password") New Password
+                input#n-password.form-control.password-validate.input(type="password" placeholder="Please enter a new Password." name='n-password'  data-validation-required-message='Please enter password' required='' pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$^!%*?#&()-=_+])[A-Za-z\\d$@$^!%*?#&()-=_+]{8,}' data-validation-pattern-message='Minimum 8 chars, at least one uppercase, one lowercase, one number and one special char (@$^!%*?#&()-=_+)')
+                p.help-block.text-danger
+              .form-group.group.control-group
+                label(for="c-password") Retype New Password
+                input#c-password.form-control.password-validate.input(type="password" placeholder="Please retype Password."  data-validation-required-message='Please re-enter password' required='' data-validation-match-match='n-password' data-validation-match-message='Password and Confirm Password does not match')
+                p.help-block.text-danger
+              .d-flex.justify-content-center
+                button#password-submit.btn.btn-primary.btn-ladda(data-style="expand-right") Update
+      .card
+        #environment-header.card-header
+          h5.mb-0
+            button.btn.btn-link(type='button' data-toggle='collapse' data-target='#environment-default' aria-expanded='true' aria-controls='environment-default')
+              | Environments
+        #environment-default.collapse(aria-labelledby='environment-header' data-parent='#profile-accordion')
+          .card-body
+            .csp-accounts-container No Accounts setup yet...
+
+block page-scripts
+  script(src=asset_base_path+'js/aws-region-pref.js')
+  script(src=asset_base_path+'js/datatable-lib.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+  script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/item-table.js')
+  script(src=asset_base_path+'js/csp-accounts-table.js')
+  script(src=asset_base_path+'js/constants.js')
+  script(src=asset_base_path+'js/my-profile.js')

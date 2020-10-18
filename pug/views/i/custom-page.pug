@@ -1,0 +1,100 @@
+extends /layout/internal.pug
+
+block title
+  - var title = " Issue Settings of autobotAI an Alexa Business skill for cloud management and DevOps operations"
+  title=title
+  link(href=asset_base_path+'css/custom-page.css' rel='stylesheet')
+block view
+  //- section.call-to-action.banner-privacy
+  //-   .container
+  //-     .row
+  //-       .col-md-12.subpage-title
+          // <h1>Privacy Policy</h1>
+  // Start Issue Section
+  section.issue-section
+    .container.px-0.px-md-auto
+      .row
+        .col-md-12.col-sm-12
+          .section-title.text-center
+            h3.d-inline Issue Settings
+            span.fa.fa-filter.fa-2x.text-primary.px-3.py-1
+      hr
+      .row.title.filter
+        .col-md-4.col-sm-6.ml-1
+          span Importance:
+      .row.filter
+        .col-md-4.col-sm-6
+          .form-group
+            select#level-select.form-control.issue-filters
+              option All
+              option High
+              option Medium
+              option Low
+              option Informational
+        .col-md-3.col-sm-4
+          label.checkbox
+            input(data-value='false' name='ShowIgnored' type='checkbox' value='false')
+            i
+            span Show Ignored
+        .col-md-1.col-sm-4.align-right
+          button#filter-btn.btn-primary.btn Filter
+      hr.filter
+      .issue-settings
+      // /.row
+    // /.container
+  // End Issue Section
+
+block page-scripts
+  //- script(src=asset_base_path+'js/router.js')
+  script(src=asset_base_path+'js/issueData.js')
+  script(src=asset_base_path+'js/custom-page.js')
+  
+
+//- block hbs-tmpls
+//-   script#issues-with-category-template(type='text/x-handlebars-template').
+//-     <ul class="nav nav-tabs" id="issue-category-tab" role="tablist">  
+//-       {{#each Categories}}
+//-           <li class="nav-item nav-category-item">
+//-             <a class="nav-link nav-category-link text-center" id="issue-{{category}}-tab" data-toggle="tab" href="#issue-{{category}}" role="tab" aria-controls="{{category}}" aria-selected="true">
+//-               <p class="m-0">{{category}}</p>
+//-               <p class="m-0">( {{count}} Issues )</p>
+//-             </a>
+//-           </li>
+//-       {{/each}}
+//-     </ul>
+//-     <div class="tab-content" id="issue-category-content">
+//-       {{#each Categories}}
+//-         <div class="tab-pane fade" id="issue-{{category}}" role="tabpanel" aria-labelledby="issue-{{category}}-tab">
+//-         {{#each levels}}
+//-           {{#each issues}}
+//-             <div class="issue-btn issue-{{../level}}-btn p-1 mb-1 btn "  data-toggle="collapse" data-target="#collapse-issue-{{ID}}" aria-expanded="false" aria-controls="collapse-issue-{{ID}}">
+//-               {{Value}} {{Topic}}
+//-               <span class="issue-control"> </span>
+//-             </div>
+//-             <div class="collapse border border-secondary rounded p-2 mb-2 collapse-{{../level}}-area" id="collapse-issue-{{ID}}">
+//-               <div class="issue-info">
+//-                 <p class="issue-desc font-weight-bold">{{Subject}}
+//-                   <a class="read-issue-{{ID}} font-weight-bold" data-toggle="collapse" href="#collapse-read-issue-{{ID}}" role="button" aria-expanded="false" aria-controls="collapse-read-issue-{{ID}}">
+//-                     Read More
+//-                   </a>
+//-                 </p>
+//-                 <div class="collapse p-3" id="collapse-read-issue-{{ID}}">
+//-                   <p> <span class="info-line mx-3"><span class="font-weight-bold mr-3">Category:</span> {{Category}}</span><span class="info-line mx-3"><span class="font-weight-bold mr-3">Importance:</span> {{Importance}}</span></p>
+//-                   <p>{{Description}}</p>
+//-                   <p>{{Links}}</p>
+//-                 </div>
+//-               </div>
+//-               <hr/>
+//-               <div class="issue-list-{{ID}}">
+//-               {{#each Example}}
+//-                 <div class="issue-example p-2 m-1 border border-dark rounded">
+//-                   {{this}}
+//-                 </div>
+//-               {{/each}}
+//-               </div>
+//-             </div>
+//-           {{/each}}
+//-         {{/each}}
+//-         </div>
+//-       {{/each}}
+//-     </div>

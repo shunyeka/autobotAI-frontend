@@ -1,0 +1,7 @@
+version: 0.2
+
+phases:  
+  build:
+    commands:       
+      - npm install     
+      - gulp image ; gulp --nowatch ; gulp revision ; gulp deploy-$DEPLOY_ENV

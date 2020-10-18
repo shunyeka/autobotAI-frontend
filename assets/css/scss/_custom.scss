@@ -1,0 +1,194 @@
+// Here you can add other styles
+
+.app-header .fa {
+    font-size: 20px;
+}
+
+.grid {
+    position: relative;
+}
+.tree, .tree ul {
+    margin:0;
+    padding:0;
+    list-style:none
+  }
+  .tree ul {
+    margin-left:1em;
+    position:relative
+  }
+  .tree ul ul {
+    margin-left:.5em
+  }
+  .tree ul:before {
+    content:"";
+    display:block;
+    width:0;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    border-left:1px solid
+  }
+  .tree li {
+    margin:0;
+    padding:0 1em;
+    line-height:2em;
+    color:#369;
+    font-weight:700;
+    position:relative
+  }
+  .tree ul li:before {
+    content:"";
+    display:block;
+    width:10px;
+    height:0;
+    border-top:1px solid;
+    margin-top:-1px;
+    position:absolute;
+    top:1em;
+    left:0
+  }
+  .tree ul li:last-child:before {
+    background:#fff;
+    height:auto;
+    top:1em;
+    bottom:0
+  }
+  .indicator {
+    margin-right:5px;
+  }
+  .tree li a {
+    text-decoration: none;
+    color:#369;
+  }
+  .tree li button, .tree li button:active, .tree li button:focus {
+    text-decoration: none;
+    color:#369;
+    border:none;
+    background:transparent;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    outline: 0;
+  }
+.item {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 46%;
+    min-height: 500px;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+    .item {
+        width: 100%;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    .item {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width : 576px) {
+    .card-group {
+        flex-flow: column wrap;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 769px) {
+    .item {
+        width: 100%;
+    }
+
+    .card-group {
+        flex-flow: row wrap;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .item {
+        width: 45%;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .item {
+        width: 46%;
+    }
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    background-color: transparent;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    padding: 5px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.progress {
+    background-color: #a9a9a9;
+}
+
+.dot1 {
+    background-color: #ff78d3;
+}
+
+.dot2 {
+    background-color: #f26400;
+}
+
+/* css to add class for user name/accountId alias display in user modal dated: 13th march 2020 */
+.fa-cloud{
+    position: relative; 
+    top: 12px;
+}
+.acc-id{
+    left: 12%;
+    bottom: 3px;
+    font-size: 11px;
+    position: relative;
+}
+.alias{
+    font-size: 17px
+}
+.alias-id{
+    left: 12%;
+    bottom: 3px;
+    font-size: 11px;
+}
+.cloud-provider{
+    bottom: 30%
+}
+.account-selector-alias-id{
+    font-size: 16px;
+    bottom: 12px;
+}

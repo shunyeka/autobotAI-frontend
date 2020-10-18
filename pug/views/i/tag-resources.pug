@@ -1,0 +1,97 @@
+extends /layout/internal.pug
+
+block title
+  - var title = "Tag Resources autobotAI - Alexa Business skill for cloud management and DevOps operations"
+  title=title
+  link(href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css' rel='stylesheet')
+
+block view
+  h2(data-toggle='tooltip' title='You can tag your AWS resources with autobotAI specific tags. This helps autobotAI to perform operations on resources.') Tag AWS Resources
+  h4 You can tag your AWS resources with autobotAI specific tags. This helps autobotAI to perform operations on resources.
+  div.btn.btn-primary.save-tagged-resources.float-right.ml-4
+      a Save All
+  ul.nav.nav-tabs(role='tablist')
+    li.nav-item
+      a.nav-link.active(data-rtype='ec2' data-toggle='tab' href='#ec2' role='tab') EC2 Instances
+    li.nav-item
+      a.nav-link(data-rtype='rds' data-toggle='tab' href='#rds' role='tab') RDS
+    li.nav-item
+      a.nav-link(data-rtype='s3' data-toggle='tab' href='#s3' role='tab') S3 Buckets
+    li.nav-item
+      a.nav-link(data-rtype='cloudFronts' data-toggle='tab' href='#cloudFronts' role='tab') CloudFronts
+    li.nav-item
+      a.nav-link(data-rtype='elasticCaches' data-toggle='tab' href='#elasticCaches' role='tab')
+        | ElasticCache Clusters
+  .tab-content
+    #ec2.tab-pane.active(role='tabpanel')
+    #rds.tab-pane(role='tabpanel')
+      | RDS Tab
+    #s3.tab-pane(role='tabpanel')
+      | S3 Tab
+    #cloudFronts.tab-pane(role='tabpanel')
+      | CloudFronts Tab
+    #elasticCaches.tab-pane(role='tabpanel')
+      | ElasticCache Tab
+    
+block page-scripts
+  script(src=asset_base_path+'js/router.js')
+  script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+  script(src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js')
+  script(src='//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js')
+  script(src=asset_base_path+'js/item-table.js')
+  script(src=asset_base_path+'js/resource-table.js')
+  script(src=asset_base_path+'js/tag-resources.js')
+
+block hbs-tmpls
+  script#resource-row-template(type='text/x-handlebars-template').
+    <tr>
+      <td><input type="checkbox"/></td>
+      <td>{{resource.name}}</td>
+      <td>{{resource.region}}</td>
+      <td>
+      {{#each resource.tags}}
+      {{Key}}: {{Value}}</br>
+      {{/each}}
+      </td>
+      <td>{{resourceEnvironment}}</td>
+    </tr>
+  script#resource-table-template(type='text/x-handlebars-template').
+    <div class="form-inline">
+    <h3>Filer Resources</h3>
+    <div class="form-group mx-sm-5 mb-2">
+      <select class="filter-dropdown">
+        <option value="all">All</option>
+        <option value="unassigned">Unassigned</option>
+    </select>
+    </div>
+    AND
+    <div class="form-group mx-sm-5 mb-2">
+    <input class="form-control resource-search-box" type="text" placeholder="Search..">
+    </div>
+    <div class="form-group mx-sm-5 mb-2">
+    <div class="dropdown action-dropdown">
+    <button class="btn btn-primary dropdown-toggle assign-env-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Assign Environment
+    <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <br/>
+    <table class="table table-striped table-bordered resource-table">
+    <thead>
+    <tr>
+    <th><input type="checkbox"/></th>
+    <th>InstanceName</th>
+    <th>Region</th>
+    <th>Tags</th>
+    <th>Environment</th>
+    </tr>
+    </thead>
+    <tbody class="resource-table-body">
+    </tbody>
+    </table>
